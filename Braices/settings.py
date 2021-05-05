@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Braices.urls'
@@ -80,6 +81,9 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
+# BASE DE DATOS LOCAL SQLITE3
+
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
@@ -87,6 +91,16 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 #    }
 #}
 
+#DATABASE HEROKU
+#import dj_database_url
+#from decouple import config
+#DATABASES = {
+#    'default': dj_database_url.config(
+#        default=config('DATABASE_URL')
+#    )
+#}
+
+# BASE DE DATOS MYSQL
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -123,7 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'US/Pacific'
 
 USE_I18N = True
 
@@ -140,6 +154,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
 
 #contact form
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

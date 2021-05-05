@@ -9,6 +9,11 @@ pillow = "*"
 django-ckeditor = "*"
 django-environ = "*"
 mysqlclient = "*"
+gunicorn = "*"
+dj-database-url = "*"
+mysql-connector-python = "*"
+python-decouple = "*"
+whitenoise = "*"
 
 [dev-packages]
 
