@@ -1,0 +1,92 @@
+{% load static %}
+
+<script>
+    // ------------------------------------------------------- //
+    //   Inject SVG Sprite - 
+    //   see more here 
+    //   https://css-tricks.com/ajaxing-svg-sprite/
+    // ------------------------------------------------------ //
+    function injectSvgSprite(path) {
+
+        var ajax = new XMLHttpRequest();
+        ajax.open("GET", path, true);
+        ajax.send();
+        ajax.onload = function(e) {
+            var div = document.createElement("div");
+            div.className = 'd-none';
+            div.innerHTML = ajax.responseText;
+            document.body.insertBefore(div, document.body.childNodes[0]);
+        }
+    }
+    // to avoid CORS issues when viewing using file:// protocol, using the demo URL for the SVG sprite
+    // use your own URL in production, please :)
+    // https://demo.bootstrapious.com/directory/1-0/icons/orion-svg-sprite.svg
+    //- injectSvgSprite('${path}icons/orion-svg-sprite.69651a96.svg'); 
+    injectSvgSprite('https://demo.bootstrapious.com/directory/1-4/icons/orion-svg-sprite.svg');
+</script>
+
+<script src="{% static 'jquery-3.6.0.min.js' %}"></script>
+
+<!-- jQuery-->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<!-- Bootstrap JS bundle - Bootstrap + PopperJS-->
+<script src="{% static 'popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<!-- Magnific Popup - Lightbox for the gallery-->
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<!-- Smooth scroll-->
+<script src="{% static 'js/smooth-scroll.polyfills.min.js' %}"></script>
+<!-- Bootstrap Select-->
+<script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+<!-- Object Fit Images - Fallback for browsers that don't support object-fit-->
+<script src="{% static 'js/ofi.min.js' %}"></script>
+<!-- Swiper Carousel                       -->
+<script src="{% static 'js/swiper.min.js' %}"></script>
+<script src="{% static 'js/jquery.cookie.js' %}"></script>
+<script src="{% static 'js/demo.36f8799a.js' %}"></script>
+
+<script>
+    var basePath = ''
+</script>
+<!-- Main Theme JS file    -->
+<script src="{% static 'js/theme.55f8348b.js' %}"></script>
+
+
+<!-- SCRIPT PARA SLIDE DE IMAGENES DETALLES-->
+<script>
+    function openModal() {
+        document.getElementById("myModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var captionText = document.getElementById("caption");
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+    }
+</script>

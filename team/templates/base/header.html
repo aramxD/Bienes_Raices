@@ -1,0 +1,40 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg fixed-top shadow navbar-light bg-white">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center">
+            <a class="navbar-brand py-1" href="/">
+                <!-- Imagen de LOGO-->
+                <img src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/logo.svg" alt="Directory logo"></a>
+        </div>
+        <!-- Navbar Collapse -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+
+                <!-- /Megamenu end-->
+                <li class="nav-item"><a class="nav-link" href="/">Inicio</a>
+                </li>
+                {% if user.is_authenticard %}
+                <li class="nav-item nav-link">{{user.username}} </li>
+                <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block "><a class="btn btn-warning btn-sm" href="#">Cerrar Sesion</a></li>
+                {% endif %} {% if user.is_staff %}
+                <li class="nav-item nav-link">{{user.username}} </li>
+                <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary btn-sm" href="{% url 'listado' %}">Listado</a></li>
+
+                <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary btn-sm" href="{% url 'ingreso_casa' %}">+Casa</a></li>
+                <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary btn-sm" href="{% url 'ingreso_depa' %}">+Departamento</a></li>
+                <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary btn-sm" href="{% url 'ingreso_terreno' %}">+Terreno</a></li>
+                <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary btn-sm" href="{% url 'ingreso_comercio' %}">+Comercio</a></li>
+                <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block ">
+                    <form action="{% url 'logoutuser' %}" method="POST">{% csrf_token %}
+                        <button class="btn btn-warning btn-sm" type='submit'>Cerrar Sesion</button>
+                    </form>
+                </li>
+                {% else %}
+                <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary btn-sm" href="{% url 'loginuser' %}">Asesores</a></li>
+
+
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

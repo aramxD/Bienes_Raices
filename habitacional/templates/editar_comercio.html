@@ -1,0 +1,69 @@
+{% extends 'base/base.html' %} {% block content %}
+
+<br><br><br>
+
+<div class="container" style="max-width: 700px">
+    {{error}}
+
+    <h2>Edita el Inmueble</h2>
+    <p>Puedes editar la informacion del Inmueble y guardar los cambios, ten cuidado no hay manera de deshacer los cambios</p>
+    <p>Tambien puedes eliminar el Inmueble de la base de datos con el boton rojo</p>
+
+    <form method="POST" action="{% url 'eliminar_comercio' comercio.id %}">{% csrf_token %}
+        <input type="submit" class="btn btn-danger" style="float: right;" value="Eliminar">
+    </form>
+
+    <br>
+    <hr>
+
+
+
+    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <h3>Datos Basicos</h3><br>
+        <strong>{{form.precio.label_tag}} </strong><br> {{form.precio}} <br>
+        <strong>{{form.m2_construccion.label_tag}}</strong> <br> {{form.m2_construccion}} <br>
+        <strong>{{form.nivel.label_tag}} </strong><br> {{form.nivel}} <br>
+        <strong>{{form.num_habitaciones.label_tag}} </strong><br> {{form.num_habitaciones}} <br>
+        <strong>{{form.num_banos.label_tag}} </strong><br> {{form.num_banos}} <br>
+        <strong>{{form.estacionamiento.label_tag}} </strong><br> {{form.estacionamiento}} <br>
+        <strong>{{form.amenidades.label_tag}} </strong><br> {{form.amenidades}} <br>
+        <strong>{{form.notas.label_tag}}</strong> <br> {{form.notas}} <br>
+
+        <div class="fieldWrapper" style="word-wrap: break-word; ">
+            <p>
+                <strong>{{form.imagen.label_tag}} </strong> {{form.imagen}}
+            </p>
+        </div>
+        <br>
+        <hr>
+        <h3> Direccion </h3>
+        <strong> {{form.calle.label_tag}} </strong><br> {{form.calle}}<br>
+        <strong> {{form.numero_ext.label_tag}} </strong><br> {{form.numero_ext}}<br>
+        <strong> {{form.numero_int.label_tag}} </strong><br> {{form.numero_int}}<br>
+        <strong> {{form.colonia.label_tag}} </strong><br> {{form.colonia}}<br>
+        <strong> {{form.ciudad.label_tag}} </strong><br> {{form.ciudad}}<br>
+        <strong> {{form.estado.label_tag}} </strong><br> {{form.estado}}<br>
+        <strong> {{form.pais.label_tag}} </strong><br> {{form.pais}}<br>
+        <strong> {{form.codigo_postal.label_tag}} </strong><br> {{form.codigo_postal}}<br>
+        <strong> {{form.latitud.label_tag}} </strong><br> {{form.latitud}}<br>
+        <strong> {{form.longitud.label_tag}} </strong><br> {{form.longitud}}<br>
+        <strong> {{form.featured.label_tag}} </strong> {{form.featured}} <br>
+
+
+        <br>
+        <hr>
+        <h3>Datos de Control</h3><br>
+        <strong>{{form.tipo_contrato.label_tag}}</strong> {{form.tipo_contrato}} <br>
+        <strong>{{form.termino.label_tag}} </strong> {{form.termino}} <br>
+        <strong>{{form.vendedor.label_tag}} </strong> {{form.vendedor}} <br>
+
+
+        <br><br><br>
+
+        <input type="submit" class="btn btn-warning" value="Guardar"><br><br><br>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %} {% block content %}
+
+<br><br><br>
+<div class="container" style="max-width: 700px">
+    <h1>{{error}}</h1>
+    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    {{form.as_p}}
+        <input type="submit" class="btn btn-warning" value="Subir">
+
+    </form>
+</div>
+{% endblock %}

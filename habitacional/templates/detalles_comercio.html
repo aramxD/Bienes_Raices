@@ -1,0 +1,185 @@
+{% extends 'base/base.html' %} {% block content %}
+
+<br><br><br>
+
+
+<!-- tarjetas de ciudades-->
+
+<div class="container" style="max-width: 1200px;">
+    <div class="row mb-5">
+        <div class="col-md-8">
+            <p class="subtitle text-primary">Aqui puede estar</p>
+            <h2>Tu siguiente propiedad</h2>
+            <h2>{{note}}</h2>
+        </div>
+        <div class="col-md-4 d-lg-flex align-items-center justify-content-end"><a class="text-muted text-sm" href="{% url 'home' %}">
+                    Regresar<i class="fas fa-angle-double-right ml-2"></i></a></div>
+
+    </div>
+    <div class="swiper-container guides-slider mx-n2 pt-3">
+        <!-- Additional required wrapper-->
+        <div class="swiper-wrapper pb-5">
+            <!-- Slides-->
+
+            
+            {% for i in fotos_detalles %}
+            <div class="swiper-slide h-auto px-2 row">
+                <div class="card card-poster gradient-overlay hover-animate mb-4 mb-lg-0" onclick="openModal();currentSlide({{ forloop.counter }})">
+                    <img class="bg-image hover-shadow cursor" src="{{i.imagen.url}}" alt="{{i.alt}}">
+                </div>
+            </div>
+            {% empty %}
+            <div class=" imagecenter">
+                <div class="">
+                    <img class="imagecenter" src="{{detalles.imagen.url}}" alt="{{i.alt}}" style="">
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+
+
+
+
+        <!-- DETALLE DE IMAGEN MODAL -->
+        <div id="myModal" class="modal">
+            <br><br><br><br><br><br>
+            <span class="close cursor" onclick="closeModal()">&times;</span>
+            <div class="modal-content-lol">
+                {% for i in fotos_detalles %}
+                <div class="mySlides">
+                    <img src="{{i.imagen.url}}" alt="{{i.alt}}" class="imagecenter">
+                </div>
+                {% endfor %}
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+<section class=" text-center container">
+    <div class="row py-lg-5 justify-content-center">
+        <div class="col-lg-6  col-md-8 mx-auto">
+            <div style="padding-bottom: .5em;">
+                <h6 class="card-title display-6">
+                    Departamento en {{ detalles.colonia }} - {{detalles.ciudad}}
+                </h6>
+                <div style="border-radius: 20px; border: solid 3px; color: rgb(255, 0, 0); ">
+                    <p class="card-title display-6 "> <strong>{{detalles.tipo_contrato}}  </strong></p>
+                </div>
+            </div><br>
+
+
+            <h5 class="card-title" style="padding-bottom: .5em;">
+                <span class="h4 text-primary fs-1">${{detalles.precio|floatformat:2}}</span>
+                <strong>MXN </strong>
+                <br>
+
+            </h5>
+            <table class="flex-grow-1 mb-0 " style="margin-left: auto; margin-right: auto;">
+                <tr>
+                    <td><i class="fa fa-home"></i> <small>Metros de Construccion</small></td>
+                    <td><strong>{{detalles.m2_construccion}} m²</strong></td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-mountain"></i> <small>Metros de Terreno</small></td>
+                    <td><strong>{{detalles.m2_terreno}} m²</strong></td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-person-booth"></i> <small>Recamaras</small></td>
+                    <td><strong>{{detalles.num_habitaciones}}</strong></td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-bath"></i> <small>Banios</small></td>
+                    <td><strong>{{detalles.num_habitaciones}}</strong></td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-car"></i> <small>Estacionamiento</small></td>
+                    <td><strong>{{detalles.estacionamiento}}</strong></td>
+                </tr>
+            </table>
+            <br>
+            <p>
+                {{detalles.notas}}
+            </p>
+
+            <hr>
+
+            <div class="container">
+                <h5>Direccion</h5>
+                <p>{{detalles.calle}} {{detalles.numero_ext}} {{detalles.numero_int}}, {{detalles.colonia}} <br> {{detalles.ciudad}}, {{detalles.estado}} {{detalles.pais}} </p>
+
+            </div>
+
+            <hr>
+
+            <div class="card ">
+                <div class="row " style="max-width: 100%; min-height: 140px;">
+                    <div class="col-md-5">
+                        {% if detalles.vendedor.foto%}
+                        <div>
+
+                            <img src="{{detalles.vendedor.foto.url}}" alt="Avatar" class="card-img" style="
+                        width: 140px; height: 140px; margin-left: auto; display: block;
+                        margin-right: auto;   overflow: hidden;    border-radius: 50%;">
+                        </div>
+                        {% endif %} </div>
+                    <div class="col-md-7">
+                        <div class="card-body" style="padding-top: 10px; padding-bottom: 0px;">
+                            <h5 class="card-title">{{detalles.vendedor.nombre}} {{detalles.vendedor.apeido}}</h5>
+                            <p class="card-text"><small> Asesor Inmobiliario </small></p>
+                            <a class="btn btn-warning my-2 open-button" onclick="openForm()"> Agendar Cita </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="form-popup" id="myForm">
+                <form action="" class="form-container" method="POST">
+                    {% csrf_token %}
+                    <h3>Agenda una Cita</h3>
+                    <table>
+                        {{nueva_cita.nombre_completo.label_tag}} {{nueva_cita.nombre_completo}} {{nueva_cita.telefono.label_tag}} {{nueva_cita.telefono}} {{nueva_cita.email.label_tag}} {{nueva_cita.email}} {{nueva_cita.whattsapp.label_tag}} {{nueva_cita.whattsapp}}
+
+
+                    </table>
+                    <button type="submit" class="btn">Agendar</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Cerrar</button>
+
+                </form>
+            </div>
+
+            <script>
+                function openForm() {
+                    document.getElementById("myForm").style.display = "block";
+                }
+
+                function closeForm() {
+                    document.getElementById("myForm").style.display = "none";
+                }
+            </script>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="text-center container" style="max-width: 800px;">
+
+
+    <a class="btn btn-primary my-2" href="{% url 'home' %}"> Regresar </a>
+</section>
+
+{% endblock %}
