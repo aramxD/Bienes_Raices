@@ -92,25 +92,25 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 #}
 
 #DATABASE HEROKU
-#import dj_database_url
-#from decouple import config
-#DATABASES = {
-#    'default': dj_database_url.config(
-#        default=config('DATABASE_URL')
-#    )
-#}
+import dj_database_url
+from decouple import config
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('HEROKU_POSTGRESQL_JADE_URL')
+    )
+}
 
 # BASE DE DATOS MYSQL
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('DATABASE_NAME'),
-        'USER' : env('DATABASE_USER'),
-        'PASSWORD' : env('DATABASE_PASSWORD'),
-        'HOST': env('DATABASE_HOST'),
-        'PORT' : env('DATABASE_PORT'),
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': env('DATABASE_NAME'),
+#        'USER' : env('DATABASE_USER'),
+#        'PASSWORD' : env('DATABASE_PASSWORD'),
+#        'HOST': env('DATABASE_HOST'),
+#        'PORT' : env('DATABASE_PORT'),
+#    }
+#}
 
 
 # Password validation
