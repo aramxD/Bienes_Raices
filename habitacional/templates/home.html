@@ -102,7 +102,16 @@
     </div>
 </section>
 
-
+<style>
+.imghome {
+    
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    margin: auto;
+    height: 250px;
+}
+</style>
 
 <!-- TARJETAS DE CASAS -->
 {% if casas %}
@@ -135,7 +144,7 @@
 
                             <div class="card-img-top overflow-hidden gradient-overlay">
                                 {% if i.imagen %}
-                                <img class="img-fluid " {% if i.termino %} style="filter: grayscale(100%); width: 300px; height: 250px; object-fit: cover;" {% else %} style="width: 300px; height: 250px; object-fit: cover;" {% endif %} src="{{i.imagen.url}}" alt="{{i.imagen.alt}}" />
+                                <img class="img-fluid imghome" {% if i.termino %} style="filter: grayscale(100%); height: 250px; object-fit: cover;" {% else %} style="height: 250px; object-fit: cover;" {% endif %} src="{{i.imagen.url}}" alt="{{i.imagen.alt}}" />
                                 <a class="tile-link" href="{% url 'detalles_casa' i.id %}"></a>
                                 {% endif %} {% if i.termino == False %}
                                 <div class="card-img-overlay-bottom z-index-20">
@@ -233,7 +242,7 @@
 
                                 {% if i.imagen %}
 
-                                <img class="img-fluid " {% if i.termino %} style="filter: grayscale(100%); width: 300px; height: 250px; object-fit: cover;" {% else %} style="width: 300px; height: 250px; object-fit: cover;" {% endif %} src="{{i.imagen.url}}" alt="{{i.imagen.alt}}" />
+                                <img class="img-fluid imghome" {% if i.termino %} style="filter: grayscale(100%); height: 250px; object-fit: cover;" {% else %} style=" height: 250px; object-fit: cover;" {% endif %} src="{{i.imagen.url}}" alt="{{i.imagen.alt}}" />
                                 <a class="tile-link" href="{% url 'detalles_depa' i.id %}"></a>
 
                                 {% endif %}
@@ -330,7 +339,7 @@
 
                                 {% if i.imagen %}
 
-                                <img class="img-fluid " {% if i.termino %} style="filter: grayscale(100%); width: 300px; height: 250px; object-fit: cover;" {% else %} style="width: 300px; height: 250px; object-fit: cover;" {% endif %} src="{{i.imagen.url}}" alt="{{i.imagen.alt}}" />
+                                <img class="img-fluid imghome" {% if i.termino %} style="filter: grayscale(100%);  height: 250px; object-fit: cover;" {% else %} style=" height: 250px; object-fit: cover;" {% endif %} src="{{i.imagen.url}}" alt="{{i.imagen.alt}}" />
                                 <a class="tile-link" href="{% url 'detalles_comercio' i.id %}"></a>
 
                                 {% endif %}
@@ -427,7 +436,7 @@
 
                                 {% if i.imagen %}
 
-                                <img class="img-fluid " {% if i.termino %} style="filter: grayscale(100%); width: 300px; height: 250px; object-fit: cover;" {% else %} style="width: 300px; height: 250px; object-fit: cover;" {% endif %} src="{{i.imagen.url}}" alt="{{i.imagen.alt}}" />
+                                <img class="img-fluid imghome" {% if i.termino %} style="filter: grayscale(100%);  height: 250px; object-fit: cover;" {% else %} style=" height: 250px; object-fit: cover;" {% endif %} src="{{i.imagen.url}}" alt="{{i.imagen.alt}}" />
                                 <a class="tile-link" href="{% url 'detalles_terreno' i.id %}"></a>
 
                                 {% endif %}
