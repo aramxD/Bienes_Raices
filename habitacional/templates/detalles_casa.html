@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %} {% block content %}
+{% extends 'base/base.html' %}{% load static %} {% block content %}
 
 <br><br><br>
 
@@ -13,7 +13,7 @@
             <h2>{{note}}</h2>
         </div>
         <div class="col-md-4 d-lg-flex align-items-center justify-content-end"><a class="text-muted text-sm" href="{% url 'home' %}">
-                    Regresar<i class="fas fa-angle-double-right ml-2"></i></a></div>
+                    <strong>Regresar</strong><img src="{% static '/icons/angle-double-right-solid.svg' %}" alt="casa"></a></div>
 
     </div>
     <div class="swiper-container guides-slider mx-n2 pt-3">
@@ -83,23 +83,23 @@
             </h5>
             <table class="flex-grow-1 mb-0 " style="margin-left: auto; margin-right: auto;">
                 <tr>
-                    <td><i class="fa fa-home"></i> <small>Metros de Construccion</small></td>
+                    <td><img src="{% static '/icons/house-door.svg' %}" alt="casa"><small>Metros de Construccion</small></td>
                     <td><strong>{{detalles.m2_construccion}} m²</strong></td>
                 </tr>
                 <tr>
-                    <td><i class="fas fa-mountain"></i> <small>Metros de Terreno</small></td>
+                    <td><img src="{% static '/icons/campground-solid.svg' %}" alt="terreno"> <small>Metros de Terreno</small></td>
                     <td><strong>{{detalles.m2_terreno}} m²</strong></td>
                 </tr>
                 <tr>
-                    <td><i class="fas fa-person-booth"></i> <small>Recamaras</small></td>
+                    <td><img src="{% static '/icons/bed-solid.svg' %}" alt="Recamaras">  <small>Recamaras</small></td>
                     <td><strong>{{detalles.num_habitaciones}}</strong></td>
                 </tr>
                 <tr>
-                    <td><i class="fas fa-bath"></i> <small>Banios</small></td>
+                    <td><img src="{% static '/icons/bath-solid.svg' %}" alt="banio"> <small>Banios</small></td>
                     <td><strong>{{detalles.num_habitaciones}}</strong></td>
                 </tr>
                 <tr>
-                    <td><i class="fas fa-car"></i> <small>Estacionamiento</small></td>
+                    <td><img src="{% static '/icons/car-solid.svg' %}" alt="Estacionamiento"> <small>Estacionamiento</small></td>
                     <td><strong>{{detalles.estacionamiento}}</strong></td>
                 </tr>
             </table>

@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %} {% block content%}
+{% extends 'base/base.html' %}{% load static %} {% block content%}
 
 <section class="hero-home">
     <div class="swiper-container hero-slider">
@@ -122,7 +122,7 @@
                 <p class="subtitle text-secondary">No dejes que te ganen </p>
                 <h2>La casa de tus sueños</h2>
             </div>
-            <div class="col-md-4 d-lg-flex align-items-center justify-content-end"><a class="text-muted text-sm" href="/"> Mira todos nuestros inmuebles<i class="fas fa-angle-double-right ml-2"></i></a></div>
+            <div class="col-md-4 d-lg-flex align-items-center justify-content-end"><a class="text-muted text-sm" href="/"> Mira todos nuestros inmuebles<img src="{% static '/icons/angle-double-right-solid.svg' %}" alt="casa"></a></div>
         </div>
         <!-- Slider main container-->
         <div class="swiper-container swiper-container-mx-negative swiper-init pt-3" data-swiper="{&quot;slidesPerView&quot;:4,&quot;spaceBetween&quot;:20,&quot;loop&quot;:true,&quot;roundLengths&quot;:true,&quot;breakpoints&quot;:{&quot;1200&quot;:{&quot;slidesPerView&quot;:3},&quot;991&quot;:{&quot;slidesPerView&quot;:2},&quot;565&quot;:{&quot;slidesPerView&quot;:1}},&quot;pagination&quot;:{&quot;el&quot;:&quot;.swiper-pagination&quot;,&quot;clickable&quot;:true,&quot;dynamicBullets&quot;:true}}">
@@ -169,27 +169,27 @@
                                     <div class="d-flex card-subtitle mb-3">
                                         <ul style="padding-left: 0;">
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fa fa-home"></i> <small>Metros de Construccion</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/house-door.svg' %}" alt="casa"> <small>Metros de Construccion</small>
                                                     <strong>{{i.m2_construccion}} m²</strong>
                                                 </p>
                                             </li>
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-mountain"></i> <small>Metros de Terreno</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/campground-solid.svg' %}" alt="terreno">  <small>Metros de Terreno</small>
                                                     <strong>{{i.m2_terreno}} m²</strong>
                                                 </p>
                                             </li>
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-person-booth"></i> <small>Recamaras</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/bed-solid.svg' %}" alt="Recamaras"> <small>Recamaras</small>
                                                     <strong>{{i.num_habitaciones}}</strong>
                                                 </p>
                                             </li>
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-bath"></i> <small>Banios</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/bath-solid.svg' %}" alt="banio"> <small>Banios</small>
                                                     <strong>{{i.num_habitaciones}}</strong>
                                                 </p>
                                             </li>
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-car"></i> <small>Estacionamiento</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/car-solid.svg' %}" alt="Estacionamiento"> <small>Estacionamiento</small>
                                                     <strong>{{i.estacionamiento}}</strong>
                                                 </p>
                                             </li>
@@ -220,7 +220,7 @@
                 <p class="subtitle text-secondary">No dejes que te ganen </p>
                 <h2>El departamento de tus sueños</h2>
             </div>
-            <div class="col-md-4 d-lg-flex align-items-center justify-content-end"><a class="text-muted text-sm" href="/"> Mira todos nuestros inmuebles<i class="fas fa-angle-double-right ml-2"></i></a></div>
+            <div class="col-md-4 d-lg-flex align-items-center justify-content-end"><a class="text-muted text-sm" href="/"> Mira todos nuestros inmuebles<img src="{% static '/icons/angle-double-right-solid.svg' %}" alt="casa"></a></div>
         </div>
         <!-- Slider main container-->
         <div class="swiper-container swiper-container-mx-negative swiper-init pt-3" data-swiper="{&quot;slidesPerView&quot;:4,&quot;spaceBetween&quot;:20,&quot;loop&quot;:true,&quot;roundLengths&quot;:true,&quot;breakpoints&quot;:{&quot;1200&quot;:{&quot;slidesPerView&quot;:3},&quot;991&quot;:{&quot;slidesPerView&quot;:2},&quot;565&quot;:{&quot;slidesPerView&quot;:1}},&quot;pagination&quot;:{&quot;el&quot;:&quot;.swiper-pagination&quot;,&quot;clickable&quot;:true,&quot;dynamicBullets&quot;:true}}">
@@ -266,27 +266,27 @@
                                     <div class="d-flex card-subtitle mb-3">
                                         <ul style="padding-left: 0;">
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fa fa-home"></i> <small>Metros de Construccion</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/house-door.svg' %}" alt="casa"> <small>Metros de Construccion</small>
                                                     <strong>{{i.m2_construccion}} m²</strong>
                                                 </p>
                                             </li>
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-mountain"></i> <small>Nivel</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/campground-solid.svg' %}" alt="terreno"> <small>Nivel</small>
                                                     <strong>{{i.nivel}} </strong>
                                                 </p>
                                             </li>
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-person-booth"></i> <small>Recamaras</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/bed-solid.svg' %}" alt="Recamaras"> <small>Recamaras</small>
                                                     <strong>{{i.num_habitaciones}}</strong>
                                                 </p>
                                             </li>
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-bath"></i> <small>Banios</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/bath-solid.svg' %}" alt="banio"><small>Banios</small>
                                                     <strong>{{i.num_habitaciones}}</strong>
                                                 </p>
                                             </li>
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-car"></i> <small>Estacionamiento</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/car-solid.svg' %}" alt="Estacionamiento"> <small>Estacionamiento</small>
                                                     <strong>{{i.estacionamiento}}</strong>
                                                 </p>
                                             </li>
@@ -317,7 +317,7 @@
                 <p class="subtitle text-secondary">No dejes que te ganen </p>
                 <h2>El local de tus sueños</h2>
             </div>
-            <div class="col-md-4 d-lg-flex align-items-center justify-content-end"><a class="text-muted text-sm" href="/"> Mira todos nuestros inmuebles<i class="fas fa-angle-double-right ml-2"></i></a></div>
+            <div class="col-md-4 d-lg-flex align-items-center justify-content-end"><a class="text-muted text-sm" href="/"> Mira todos nuestros inmuebles<img src="{% static '/icons/angle-double-right-solid.svg' %}" alt="casa"></a></div>
         </div>
         <!-- Slider main container-->
         <div class="swiper-container swiper-container-mx-negative swiper-init pt-3" data-swiper="{&quot;slidesPerView&quot;:4,&quot;spaceBetween&quot;:20,&quot;loop&quot;:true,&quot;roundLengths&quot;:true,&quot;breakpoints&quot;:{&quot;1200&quot;:{&quot;slidesPerView&quot;:3},&quot;991&quot;:{&quot;slidesPerView&quot;:2},&quot;565&quot;:{&quot;slidesPerView&quot;:1}},&quot;pagination&quot;:{&quot;el&quot;:&quot;.swiper-pagination&quot;,&quot;clickable&quot;:true,&quot;dynamicBullets&quot;:true}}">
@@ -363,27 +363,27 @@
                                     <div class="d-flex card-subtitle mb-3">
                                         <ul style="padding-left: 0;">
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fa fa-home"></i> <small>Metros de Construccion</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/house-door.svg' %}" alt="casa"> <small>Metros de Construccion</small>
                                                     <strong>{{i.m2_construccion}} m²</strong>
                                                 </p>
                                             </li>
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-mountain"></i> <small>Nivel</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/campground-solid.svg' %}" alt="terreno">  <small>Nivel</small>
                                                     <strong>{{i.nivel}} </strong>
                                                 </p>
                                             </li>
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-person-booth"></i> <small>Recamaras</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/bed-solid.svg' %}" alt="Recamaras"> <small>Recamaras</small>
                                                     <strong>{{i.num_habitaciones}}</strong>
                                                 </p>
                                             </li>
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-bath"></i> <small>Banios</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/bath-solid.svg' %}" alt="banio"> <small>Banios</small>
                                                     <strong>{{i.num_habitaciones}}</strong>
                                                 </p>
                                             </li>
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-car"></i> <small>Estacionamiento</small>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/car-solid.svg' %}" alt="Estacionamiento">  <small>Estacionamiento</small>
                                                     <strong>{{i.estacionamiento}}</strong>
                                                 </p>
                                             </li>
@@ -414,7 +414,7 @@
                 <p class="subtitle text-secondary">No dejes que te ganen </p>
                 <h2>El Terreno de tus sueños</h2>
             </div>
-            <div class="col-md-4 d-lg-flex align-items-center justify-content-end"><a class="text-muted text-sm" href="/"> Mira todos nuestros inmuebles<i class="fas fa-angle-double-right ml-2"></i></a></div>
+            <div class="col-md-4 d-lg-flex align-items-center justify-content-end"><a class="text-muted text-sm" href="/"> Mira todos nuestros inmuebles<img src="{% static '/icons/angle-double-right-solid.svg' %}" alt="casa"></a></div>
         </div>
         <!-- Slider main container-->
         <div class="swiper-container swiper-container-mx-negative swiper-init pt-3" data-swiper="{&quot;slidesPerView&quot;:4,&quot;spaceBetween&quot;:20,&quot;loop&quot;:true,&quot;roundLengths&quot;:true,&quot;breakpoints&quot;:{&quot;1200&quot;:{&quot;slidesPerView&quot;:3},&quot;991&quot;:{&quot;slidesPerView&quot;:2},&quot;565&quot;:{&quot;slidesPerView&quot;:1}},&quot;pagination&quot;:{&quot;el&quot;:&quot;.swiper-pagination&quot;,&quot;clickable&quot;:true,&quot;dynamicBullets&quot;:true}}">
@@ -460,30 +460,12 @@
                                     <div class="d-flex card-subtitle mb-3">
                                         <ul style="padding-left: 0;">
                                             <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fa fa-home"></i> <small>Metros de Construccion</small>
-                                                    <strong>{{i.m2_construccion}} m²</strong>
+                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><img src="{% static '/icons/campground-solid.svg' %}" alt="terreno">  <small>Metros de Terreno</small>
+                                                    <strong>{{i.m2_terreno}} m²</strong>
                                                 </p>
                                             </li>
-                                            <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-mountain"></i> <small>Nivel</small>
-                                                    <strong>{{i.nivel}} </strong>
-                                                </p>
-                                            </li>
-                                            <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-person-booth"></i> <small>Recamaras</small>
-                                                    <strong>{{i.num_habitaciones}}</strong>
-                                                </p>
-                                            </li>
-                                            <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-bath"></i> <small>Banios</small>
-                                                    <strong>{{i.num_habitaciones}}</strong>
-                                                </p>
-                                            </li>
-                                            <li style="list-style-type: none;">
-                                                <p class="flex-grow-1 mb-0 text-muted text-sm"><i class="fas fa-car"></i> <small>Estacionamiento</small>
-                                                    <strong>{{i.estacionamiento}}</strong>
-                                                </p>
-                                            </li>
+                                            
+                                            
                                         </ul>
 
                                     </div>

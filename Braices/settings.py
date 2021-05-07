@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'team',
     'paginas',
     'ckeditor',  
-    'storages'
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -85,21 +85,21 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 # BASE DE DATOS LOCAL SQLITE3
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
 
 #DATABASE HEROKU
 import dj_database_url
 from decouple import config
-#DATABASES = {
-#    'default': dj_database_url.config(
-#        default=config('HEROKU_POSTGRESQL_JADE_URL')
-#    )
-#}
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('HEROKU_POSTGRESQL_JADE_URL')
+    )
+}
 
 # BASE DE DATOS MYSQL
 #DATABASES = {
@@ -153,6 +153,8 @@ USE_THOUSAND_SEPARATOR = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR
 
@@ -161,14 +163,14 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #S3 BUCKETS CONFIG
 
-#AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
-#AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
-#AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
-#
-#AWS_S3_FILE_OVERWRITE = False
-#AWS_DEFAULT_ACL = None
-#DEFAULT_FILE_STORAGE = env('DEFAULT_FILE_STORAGE')
-#STATICFILES_STORAGE = env('STATICFILES_STORAGE')
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 #contact form
