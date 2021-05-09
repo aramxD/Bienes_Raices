@@ -1,6 +1,9 @@
 from django.db import models
 from team.models import Asesor
+from ckeditor.fields import RichTextField
 
+
+    
 # Create your models here.
 
 TIPO_INMUEBLE = (
@@ -19,9 +22,9 @@ class Casa(models.Model):
     num_banos = models.DecimalField(max_digits=2, decimal_places=1, default=1, verbose_name="Numero de baños", blank=True)
     estacionamiento = models.IntegerField(default=0, verbose_name="Numero de estacionamientos", blank=True)
     amenidades = models.BooleanField(default=False)
-    notas = models.TextField(max_length=500, blank=True,)
+    notas = RichTextField()
     imagen = models.ImageField(verbose_name="Imagen", upload_to="images/landing", blank=True)
-
+    
     #ubicacion
     calle = models.CharField(max_length=40, blank=True)
     numero_ext = models.CharField(max_length=8, blank=True)
