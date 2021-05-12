@@ -17,6 +17,7 @@ whitenoise = "*"
 psycopg2 = "*"
 django-storages = "*"
 boto3 = "*"
+xhtml2pdf = "*"
 
 [dev-packages]
 

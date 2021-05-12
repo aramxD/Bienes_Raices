@@ -65,7 +65,7 @@ class Departamentos(models.Model):
     num_banos = models.IntegerField(default=0, verbose_name="Numero de baños")
     estacionamiento = models.IntegerField(default=0, verbose_name="Numero de estacionamientos")
     amenidades = models.BooleanField(default=False)
-    notas = models.TextField(max_length=500, blank=True)
+    notas = RichTextField()
     imagen = models.ImageField(verbose_name="Imagen", upload_to="images/landing", blank=True)
 
     #ubicacion
@@ -107,7 +107,7 @@ class Comercio(models.Model):
     num_habitaciones = models.IntegerField(default=0, verbose_name="Numero de cuartos")
     num_banos = models.IntegerField(default=0, verbose_name="Numero de baños")
     estacionamiento = models.IntegerField(default=0, verbose_name="Numero de estacionamientos")
-    notas = models.TextField(max_length=500, blank=True)
+    notas = RichTextField()
     imagen = models.ImageField(verbose_name="Imagen", upload_to="images/landing", blank=True)
 
     #ubicacion
@@ -144,7 +144,7 @@ class Terreno(models.Model):
     #Datos del inmueble
     precio = models.DecimalField(max_digits=12, decimal_places=2,)
     m2_terreno = models.DecimalField(max_digits=6, decimal_places=2,)
-    notas = models.TextField(max_length=500, blank=True)
+    notas = RichTextField()
     imagen = models.ImageField(verbose_name="Imagen", upload_to="images/landing", blank=True)
 
     #ubicacion

@@ -5,6 +5,10 @@ urlpatterns = [
     
     path('', home, name='home'),
     path('casa/<int:casa_id>', detalles_casa, name='detalles_casa'),
+    path('casa/<int:casa_id>/pdf', render_pdf_view, name='render_pdf_view'),
+    path('pdf_view/', ViewPDF.as_view(), name="pdf_view"),
+    path('pdf_download/', DownloadPDF.as_view(), name="pdf_download"),
+
     path('departamento/<int:depa_id>', detalles_depa, name='detalles_depa'),
     path('comercio/<int:comercio_id>', detalles_comercio, name='detalles_comercio'),
     path('terreno/<int:terreno_id>', detalles_terreno, name='detalles_terreno'),

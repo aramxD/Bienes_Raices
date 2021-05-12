@@ -3,12 +3,14 @@ from django.core.mail import EmailMessage
 from django.urls import reverse
 from django.db import IntegrityError
 from team.models import Asesor
+from paginas.models import *
 from .models import *
 from .forms import *
 
 
 # Create your views here.
 def home(request):
+    paginas = Pagina.objects.all()
     casas = Casa.objects.all()
     casa_landing = casas.filter(featured=True)
 
@@ -23,6 +25,7 @@ def home(request):
 
     
     context = {
+        'paginas':paginas,
         'casas' : casa_landing,
         'departamentos' : depa_landing,
         'comercio' : comercio_landing,
@@ -47,6 +50,7 @@ def listado(request):
 
 
 def detalles_casa(request, casa_id):
+    paginas = Pagina.objects.all()
     detalles = get_object_or_404(Casa, pk=casa_id)
     queryfotos = CasaImagen.objects.all()
     fotos_detalles = queryfotos.filter(casa=detalles)
@@ -81,6 +85,7 @@ def detalles_casa(request, casa_id):
             nueva_cita = CitasForms()
 
             context = {
+            'paginas':paginas,
             'note':note,
             'nueva_cita':nueva_cita,
             'detalles' : detalles,
@@ -96,6 +101,7 @@ def detalles_casa(request, casa_id):
     else:
         nueva_cita = CitasForms()
         context = {
+            'paginas':paginas,
             'detalles' : detalles,
             'nueva_cita':nueva_cita,
             'fotos_detalles' : fotos_detalles,
@@ -104,6 +110,7 @@ def detalles_casa(request, casa_id):
 
 
 def detalles_depa(request, depa_id):
+    paginas = Pagina.objects.all()
     detalles = get_object_or_404(Departamentos, pk=depa_id)
     queryfotos = DepartamentosImagen.objects.all()
     fotos_detalles = queryfotos.filter(casa=detalles)
@@ -118,6 +125,7 @@ def detalles_depa(request, depa_id):
             nueva_cita = CitasForms()
 
             context = {
+            'paginas':paginas,
             'note':note,
             'nueva_cita':nueva_cita,
             'detalles' : detalles,
@@ -128,6 +136,7 @@ def detalles_depa(request, depa_id):
     else:
         nueva_cita = CitasForms()
         context = {
+                'paginas':paginas,
                 'detalles' : detalles,
                 'nueva_cita':nueva_cita,
                 'fotos_detalles' : fotos_detalles,
@@ -136,6 +145,7 @@ def detalles_depa(request, depa_id):
 
 
 def detalles_comercio(request, comercio_id):
+    paginas = Pagina.objects.all()
     detalles = get_object_or_404(Comercio, pk=comercio_id)
     queryfotos = ComercioImagen.objects.all()
     fotos_detalles = queryfotos.filter(casa=detalles)
@@ -150,6 +160,7 @@ def detalles_comercio(request, comercio_id):
             nueva_cita = CitasForms()
 
             context = {
+            'paginas':paginas,
             'note':note,
             'nueva_cita':nueva_cita,
             'detalles' : detalles,
@@ -160,6 +171,7 @@ def detalles_comercio(request, comercio_id):
     else:
         nueva_cita = CitasForms()
         context = {
+                'paginas':paginas,
                 'detalles' : detalles,
                 'nueva_cita':nueva_cita,
                 'fotos_detalles' : fotos_detalles,
@@ -168,6 +180,7 @@ def detalles_comercio(request, comercio_id):
 
 
 def detalles_terreno(request, terreno_id):
+    paginas = Pagina.objects.all()
     detalles = get_object_or_404(Terreno, pk=terreno_id)
     queryfotos = TerrenoImagen.objects.all()
     fotos_detalles = queryfotos.filter(casa=detalles)
@@ -182,6 +195,7 @@ def detalles_terreno(request, terreno_id):
             nueva_cita = CitasForms()
 
             context = {
+            'paginas':paginas,
             'note':note,
             'nueva_cita':nueva_cita,
             'detalles' : detalles,
@@ -192,6 +206,7 @@ def detalles_terreno(request, terreno_id):
     else:
         nueva_cita = CitasForms()
         context = {
+                'paginas':paginas,
                 'detalles' : detalles,
                 'nueva_cita':nueva_cita,
                 'fotos_detalles' : fotos_detalles,
@@ -430,3 +445,89 @@ def eliminar_terreno(request, terreno_pk):
     if request.method == 'POST':
         terreno.delete()
         return redirect('listado') 
+
+
+
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from io import BytesIO
+
+from django.views import View
+
+def render_pdf_view(request, casa_id):
+    template_path = 'detalles_casa_pdf.html'
+    detalles = get_object_or_404(Casa, pk=casa_id)
+    queryfotos = CasaImagen.objects.all()
+    fotos_detalles = queryfotos.filter(casa=detalles)
+
+    context = {
+            'detalles' : detalles,
+            'fotos_detalles' : fotos_detalles,
+            }
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    #La siguiente linea es para que el documento se descargue
+    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+        html, dest=response )
+    # if error then show some funy view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+
+
+
+def render_to_pdf(template_src, context_dict={}):
+    template = get_template(template_src)
+    html  = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return None
+
+    
+data = {
+    "company": "Dennnis Ivanov Company",
+    "address": "123 Street name",
+    "city": "Vancouver",
+    "state": "WA",
+    "zipcode": "98663",     
+    "phone": "555-555-2345",
+    "email": "youremail@dennisivy.com",
+    "website": "dennisivy.com",
+    }
+
+#Opens up page as PDF
+class ViewPDF(View):
+	def get(self, request, *args, **kwargs):
+
+		pdf = render_to_pdf('pdf_template.html', data)
+		return HttpResponse(pdf, content_type='application/pdf')
+
+
+#Automaticly downloads to PDF file
+class DownloadPDF(View):
+	def get(self, request, *args, **kwargs):
+		
+		pdf = render_to_pdf('pdf_template.html', data)
+
+		response = HttpResponse(pdf, content_type='application/pdf')
+		filename = "Invoice_%s.pdf" %("12341231")
+		content = "attachment; filename='%s'" %(filename)
+		response['Content-Disposition'] = content
+		return response
+
+
+
+def index(request):
+	context = {}
+	return render(request, 'app/index.html', context)

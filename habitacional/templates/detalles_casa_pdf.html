@@ -1,0 +1,191 @@
+{% load static %}
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Casa {{ detalles.colonia }} - {{detalles.ciudad}}</title>
+
+    <style>
+        @page {
+            size: a4 portrait;
+            @frame header_frame {
+                /* Static Frame */
+                -pdf-frame-content: header_content;
+                left: 50pt;
+                width: 512pt;
+                top: 50pt;
+                height: 40pt;
+            }
+            @frame content_frame {
+                /* Content Frame */
+                left: 50pt;
+                width: 512pt;
+                top: 90pt;
+                height: 632pt;
+            }
+            @frame footer_frame {
+                /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 50pt;
+                width: 512pt;
+                top: 772pt;
+                height: 20pt;
+            }
+        }
+        
+        .container {
+            margin: auto;
+            border: 3px solid green;
+            padding: 10px;
+            text-align: center;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .image-left {
+            width: 25%;
+            float: left;
+        }
+        
+        .main-right {
+            width: 75%;
+            float: right;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <div style="width: 600;">
+
+        <h1 id="header_content" class="container" style="font-size: 20px;">Casa {{ detalles.colonia }} - {{detalles.ciudad}}</h1>
+        <div>
+            <div class="image-left col-6">
+                <img src="{{detalles.imagen.url}}" alt="{{i.alt}}" style="width: 300px; border-radius: 30px;">
+            </div>
+
+            <div class="main-right col-6">
+                <div style="border-radius: 20px; border: solid 3px; color: rgb(255, 0, 0); ">
+                    <p class=""> <strong>{{detalles.tipo_contrato}}  </strong></p>
+                </div>
+                <h2 class="h4 text-primary fs-1"><strong>${{detalles.precio|floatformat:2}}MXN </strong></h2>
+
+                <ul style="">
+                    <li>
+                        <img src="{% static '/icons/house-door.svg' %}" alt="casa"><small>Metros de Construccion</small>
+                        <strong>{{detalles.m2_construccion}} m²</strong>
+                    </li>
+                    <li>
+                        <img src="{% static '/icons/campground-solid.svg' %}" alt="terreno"> <small>Metros de Terreno</small>
+                        <strong>{{detalles.m2_terreno}} m²</strong>
+                    </li>
+                    <li>
+                        <img src="{% static '/icons/bed-solid.svg' %}" alt="Recamaras"> <small>Recamaras</small>
+                        <strong>{{detalles.num_habitaciones}}</strong>
+                    </li>
+                    <li>
+                        <img src="{% static '/icons/bath-solid.svg' %}" alt="banio"> <small>Banios</small>
+                        <strong>{{detalles.num_habitaciones}}</strong>
+                    </li>
+                    <li>
+                        <img src="{% static '/icons/car-solid.svg' %}" alt="Estacionamiento"> <small>Estacionamiento</small>
+                        <strong>{{detalles.estacionamiento}}</strong>
+                    </li>
+                </ul>
+                <p>
+                    {{detalles.notas|safe}}
+                </p>
+                <div>
+                    <h5>Direccion</h5>
+                    <p>{{detalles.calle}} {{detalles.numero_ext}} {{detalles.numero_int}}, {{detalles.colonia}} <br> {{detalles.ciudad}}, {{detalles.estado}} {{detalles.pais}} </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <section class=" text-center container">
+        <div class="row py-lg-5 justify-content-center">
+
+
+            <br>
+
+
+            <hr>
+
+            <div class="container">
+
+            </div>
+
+            <hr>
+
+            <div class="card ">
+                <div class="row " style="max-width: 100%; min-height: 140px;">
+                    <div class="col-md-5">
+                        {% if detalles.vendedor.foto%}
+                        <div>
+
+                            <img src="{{detalles.vendedor.foto.url}}" alt="Avatar" class="card-img" style="
+                        width: 140px; height: 140px; margin-left: auto; display: block;
+                        margin-right: auto;   overflow: hidden;    border-radius: 50%;">
+                        </div>
+                        {% endif %} </div>
+                    <div class="col-md-7">
+                        <div class="card-body" style="padding-top: 10px; padding-bottom: 0px;">
+                            <h5 class="card-title">{{detalles.vendedor.nombre}} {{detalles.vendedor.apeido}}</h5>
+                            <p class="card-text"><small> Asesor Inmobiliario </small></p>
+                            <a class="btn btn-warning my-2 open-button" onclick="openForm()"> Agendar Cita </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="form-popup" id="myForm">
+                <form action="" class="form-container" method="POST">
+                    {% csrf_token %}
+                    <h3>Agenda una Cita</h3>
+                    <table>
+                        {{nueva_cita.nombre_completo.label_tag}} {{nueva_cita.nombre_completo}} {{nueva_cita.telefono.label_tag}} {{nueva_cita.telefono}} {{nueva_cita.email.label_tag}} {{nueva_cita.email}} {{nueva_cita.whattsapp.label_tag}} {{nueva_cita.whattsapp}}
+
+
+                    </table>
+                    <button type="submit" class="btn">Agendar</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Cerrar</button>
+
+                </form>
+            </div>
+
+            <script>
+                function openForm() {
+                    document.getElementById("myForm").style.display = "block";
+                }
+
+                function closeForm() {
+                    document.getElementById("myForm").style.display = "none";
+                }
+            </script>
+        </div>
+
+        </div>
+
+    </section>
+
+
+
+</body>
+
+
+
+</html>

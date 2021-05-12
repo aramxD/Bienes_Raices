@@ -1,4 +1,5 @@
 *.env
 .env
+navbar.html
 /images/
 secciones-de-codigo.mc

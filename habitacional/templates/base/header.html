@@ -1,105 +1,330 @@
 {% load static %}
+
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
 <style>
-    ul {
-        list-style-type: none;
+    *,
+    *::before,
+    *::after {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
     }
     
-    li {
-        float: left;
+    body {
+        overflow-x: hidden;
     }
     
-    li a,
-    .dropbtn {
-        display: inline-block;
-        color: white;
-        text-align: center;
+    a {
         text-decoration: none;
     }
     
-    li a:hover,
-    .dropdown:hover .dropbtn {
-        background-color: rgba(255, 0, 0, 0);
+    ul {
+        list-style: none;
+        padding-left: .5rem;
     }
     
-    li.dropdown {
-        display: inline-block;
-    }
-    
-    .dropdown-content {
-        display: none;
+    header {
+        width: 100%;
         position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
+        top: 0;
+        left: 0;
     }
     
-    .dropdown-content a {
+    .jscontainer {
+        width: 100%;
+        max-width: 117rem;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    
+    .menu-icons {
+        color: rgb(0, 0, 0);
+        font-size: 4rem;
+        position: absolute;
+        top: 50%;
+        right: 2rem;
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 1500;
+        display: none;
+    }
+    
+    nav {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 4.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, .2);
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .logo {
+        width: 15rem;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+    }
+    
+    .logo i {
+        font-size: 4.3rem;
+        color: rgb(255, 255, 255);
+    }
+    
+    .nav-list {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .nav-list li {
+        line-height: 4rem;
+        position: relative;
+    }
+    
+    .sub-menu li {
+        line-height: 2rem;
+    }
+    
+    .nav-list a {
+        display: block;
         color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        text-align: left;
+        padding: 0 1.4rem;
+        font-size: 1rem;
+        text-transform: uppercase;
+        transition: color 650ms;
     }
     
-    .dropdown-content a:hover {
-        background-color: #f1f1f1;
+    .nav-list a.btn-txt {
+        color: rgb(255, 255, 255);
     }
     
-    .dropdown:hover .dropdown-content {
+    .nav-list a:hover {
+        color: #121f33
+    }
+    
+    .btn {
+        padding: .5rem;
+        display: inline-block;
+        border-radius: 2rem;
+        transition: background-color 650ms;
+    }
+    
+    .btn-azul {
+        background-color: #0D6EFD;
+        border: 2px solid #003c96;
+    }
+    
+    .btn-amarillo {
+        background-color: #FFC107;
+        border: 2px solid #d6a100;
+    }
+    
+    .sub-menu {
+        width: 15rem;
         display: block;
+        position: absolute;
+        border-top: 3px solid #333333;
+        background-color: #d4d4d4;
+        z-index: 1000;
+        top: 10rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 650ms ease;
+    }
+    
+    .sub-menu::before {
+        content: "";
+        position: absolute;
+        top: -2.5rem;
+        left: 3rem;
+        border: 1.2rem solid transparent;
+        border-bottom-color: #333333;
+    }
+    
+    .sub-menu .sub-menu::before {
+        top: .4rem;
+        left: -2.5rem;
+        border: 1.2rem solid transparent;
+        border-right-color: #333333;
+    }
+    
+    .sub-menu .sub-menu {
+        border-top: none;
+        border-left: 3px solid #333333;
+        top: 0;
+        left: 160%;
+    }
+    
+    .nav-list li:hover>.sub-menu {
+        top: 4rem;
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .sub-menu li:hover>.sub-menu {
+        top: 0;
+        left: 100%;
+    }
+    
+    li.move-right {
+        margin: auto 0 auto auto;
+        line-height: initial;
+    }
+    
+    @media screen and (max-width: 1200px) {
+        .nav-list a {
+            padding: 0 .4rem;
+        }
+    }
+    
+    @media screen and (max-width: 945px) {
+        .nav-list {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            display: none;
+            flex-direction: column;
+            align-items: initial;
+            background-color: #aaaaaa;
+            z-index: 1000;
+            /*overflow-y: scroll;*/
+            padding: 20px;
+        }
+        .nav-list {
+            line-height: 6rem;
+        }
+        .sub-menu {
+            position: initial;
+            border: 3px solid transparent;
+            border-left-color: #333333;
+            margin-left: 1rem;
+            max-height: 0;
+        }
+        .sub-menu::before {
+            display: none;
+        }
+        .nav-list li:hover>.sub-menu {
+            opacity: 1;
+            visibility: visible;
+            max-height: initial;
+        }
+        .move-right {
+            width: 250px;
+        }
+        li.move-right {
+            margin: 0 auto 0 0;
+            line-height: initial;
+        }
+        .menu-icons {
+            display: block;
+        }
+        .ion-md-close {
+            display: none;
+        }
+        nav.active .ion-md-close {
+            display: block;
+        }
+        nav.active .ion-md-menu {
+            display: none;
+        }
+        nav.active .nav-list {
+            display: flex;
+        }
     }
 </style>
-<nav class="navbar navbar-expand-lg fixed-top shadow navbar-light bg-white">
-    <div class="container-fluid">
-        <div class="d-flex align-items-center">
-            <a class="navbar-brand py-1" href="/">
+
+<script>
+    //Create function to select elements
+    const selectElement = (element) => document.querySelector(element);
+
+    //Open and close nav on click
+    selectElement('.menu-icons'), addEventListener('click', () => {
+        selectElement('nav').classList.toggle('active');
+    });
+</script>
+<!-- 
+NAVBAR Para publico General -->
+<header>
+    <div class="js-container">
+        <nav>
+            <div class="menu-icons">
+                <i class="icon ion-md-menu"></i>
+                <i class="icon ion-md-close"></i>
+            </div>
+
+            <a class=" logo" href="/">
                 <!-- Imagen de LOGO-->
                 <img src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/logo.svg" alt="Directory logo"></a>
-        </div>
 
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Navbar Collapse -->
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav ml-auto">
 
-                <!-- /Megamenu end-->
-                <li class="nav-item"><a class="nav-link" href="/">Inicio</a>
+            <ul class="nav-list">
+                <li>
+                    <a href="/">Inicio</a>
                 </li>
-                {% if user.is_authenticard %}
-                <li class="nav-item nav-link">{{user.username}} </li>
-                <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block "><a class="btn btn-warning btn-sm" href="#">Cerrar Sesion</a></li>
-                {% endif %} {% if user.is_staff %}
-                <li class="nav-item nav-link">{{user.username}} </li>
-                <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary btn-sm" href="{% url 'listado' %}">Listado</a></li>
+                <li>
+                    <a href="#">Contacto</a>
+                </li>
+                {% if paginas %}
+                <li>
+                    <a href="#">Servicios <i class="icon ion-md-arrow-dropdown"></i> </a>
+                    <ul class="sub-menu">
+                        {% for i in paginas %}
+                        <li>
+                            <a href="/{{slug}}">{{i.titulo}}</a>
+                        </li>
+                        {%endfor%}
 
-                <div class="dropdown">
-                    <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a href="javascript:void(0)" class="dropbtn btn btn-primary btn-sm">Dropdown</a></li>
-                    <div class="dropdown-content">
-                        <a class="btn btn-primary btn-sm" href="{% url 'ingreso_casa' %}">+Casa</a>
-                        <a class="btn btn-primary btn-sm" href="{% url 'ingreso_depa' %}">+Departamento</a>
-                        <a class="btn btn-primary btn-sm" href="{% url 'ingreso_terreno' %}">+Terreno</a>
-                        <a class="btn btn-primary btn-sm" href="{% url 'ingreso_comercio' %}">+Comercio</a>
-                    </div>
-                </div>
+                    </ul>
+                </li>
+                {%endif%} {% if user.is_staff %}
+                <li class=" ">
 
+                    <button class="btn btn-azul"><a href="{% url 'listado' %}">Listado</a></button>
 
-
-                <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block ">
+                </li>
+                <li class=" ">
+                    <button class="btn btn-azul" href="#">Agregar
+                        <i class="icon ion-md-arrow-dropdown"></i> 
+                    </button>
+                    <ul class="sub-menu">
+                        <li>
+                            <a class="" href="{% url 'ingreso_casa' %}">+Casa</a>
+                        </li>
+                        <li>
+                            <a class="" href="{% url 'ingreso_depa' %}">+Departamento</a>
+                        </li>
+                        <li>
+                            <a class="" href="{% url 'ingreso_terreno' %}">+Terreno</a>
+                        </li>
+                        <li>
+                            <a class="" href="{% url 'ingreso_comercio' %}">+Comercio</a>
+                        </li>
+                </li>
+                <li>
+                    <a class="" href="/">+Pagina</a>
+                </li>
+                </ul>
+                </li>
+                {% endif %} {% if user.is_authenticated %}
+                <li class="move-right ">
                     <form action="{% url 'logoutuser' %}" method="POST">{% csrf_token %}
-                        <button class="btn btn-warning btn-sm" type='submit'>Cerrar Sesion</button>
+                        <button class="btn btn-amarillo" type='submit'>Cerrar Sesion</button>
                     </form>
                 </li>
                 {% else %}
-                <li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary btn-sm" href="{% url 'loginuser' %}">Asesores</a></li>
-
-
+                <li class="move-right btn">
+                    <a class="btn-txt" href="{% url 'loginuser' %}">Asesores</a>
+                </li>
                 {% endif %}
+
             </ul>
-        </div>
+        </nav>
     </div>
-</nav>
+</header>
+<br>

@@ -1,12 +1,12 @@
 'use strict';
 
-$(function () {
+$(function() {
 
     // ------------------------------------------------------- //
     //   Lightbox in galleries
     // ------------------------------------------------------ //
 
-    $('.slider-gallery').each(function () { // the containers for all your galleries
+    $('.slider-gallery').each(function() { // the containers for all your galleries
         $(this).magnificPopup({
             delegate: 'a', // the selector for gallery item
             type: 'image',
@@ -17,7 +17,7 @@ $(function () {
         });
     });
 
-    $('.gallery').each(function () { // the containers for all your galleries
+    $('.gallery').each(function() { // the containers for all your galleries
         $(this).magnificPopup({
             delegate: 'a', // the selector for gallery item
             type: 'image',
@@ -31,11 +31,11 @@ $(function () {
     //     Reset input
     // =====================================================
 
-    $('.input-reset .form-control').on('focus', function () {
+    $('.input-reset .form-control').on('focus', function() {
         $(this).parents('.input-reset').addClass('focus');
     });
-    $('.input-reset .form-control').on('blur', function () {
-        setTimeout(function () {
+    $('.input-reset .form-control').on('blur', function() {
+        setTimeout(function() {
             $('.input-reset .form-control').parents('.input-reset').removeClass('focus');
         }, 333);
 
@@ -97,7 +97,7 @@ $(function () {
     //      Init swipers automatically
     // =====================================================
 
-    $('.swiper-init').each(function () {
+    $('.swiper-init').each(function() {
 
         var slider = $(this),
             configuration = JSON.parse($(this).attr('data-swiper'));
@@ -128,7 +128,7 @@ $(function () {
             nextEl: '#homeNext',
             prevEl: '#homePrev',
         },
-    });    
+    });
 
     // =====================================================
     //      Items slider
@@ -139,7 +139,7 @@ $(function () {
         spaceBetween: 20,
         loop: true,
         roundLengths: true,
-        breakpoints: { 
+        breakpoints: {
             1200: {
                 slidesPerView: 3
             },
@@ -305,7 +305,7 @@ $(function () {
     // ------------------------------------------------------- //
     //   Increase/Decrease product amount
     // ------------------------------------------------------ //
-    $('.btn-items-decrease').on('click', function () {
+    $('.btn-items-decrease').on('click', function() {
         var input = $(this).siblings('.input-items');
         if (parseInt(input.val(), 10) >= 1) {
             if (input.hasClass('input-items-greaterthan')) {
@@ -316,7 +316,7 @@ $(function () {
         }
     });
 
-    $('.btn-items-increase').on('click', function () {
+    $('.btn-items-increase').on('click', function() {
         var input = $(this).siblings('.input-items');
         if (input.hasClass('input-items-greaterthan')) {
             input.val((parseInt(input.val(), 10) + 1) + '+');
@@ -329,7 +329,7 @@ $(function () {
     //   Scroll to top button
     // ------------------------------------------------------ //
 
-    $(window).on('scroll', function () {
+    $(window).on('scroll', function() {
         if ($(window).scrollTop() >= 1500) {
             $('#scrollTop').fadeIn();
         } else {
@@ -338,7 +338,7 @@ $(function () {
     });
 
 
-    $('#scrollTop').on('click', function () {
+    $('#scrollTop').on('click', function() {
         $('html, body').animate({
             scrollTop: 0
         }, 1000);
@@ -348,11 +348,11 @@ $(function () {
     // Adding fade effect to dropdowns
     // ------------------------------------------------------ //
 
-    $.fn.slideDropdownUp = function () {
+    $.fn.slideDropdownUp = function() {
         $(this).fadeIn().css('transform', 'translateY(0)');
         return this;
     };
-    $.fn.slideDropdownDown = function (movementAnimation) {
+    $.fn.slideDropdownDown = function(movementAnimation) {
 
         if (movementAnimation) {
             $(this).fadeOut().css('transform', 'translateY(30px)');
@@ -362,10 +362,10 @@ $(function () {
         return this;
     };
 
-    $('.navbar .dropdown').on('show.bs.dropdown', function (e) {
+    $('.navbar .dropdown').on('show.bs.dropdown', function(e) {
         $(this).find('.dropdown-menu').first().slideDropdownUp();
     });
-    $('.navbar .dropdown').on('hide.bs.dropdown', function (e) {
+    $('.navbar .dropdown').on('hide.bs.dropdown', function(e) {
 
         var movementAnimation = true;
 
@@ -381,7 +381,7 @@ $(function () {
     //    Collapse button control (used for more/less filters)
     // ------------------------------------------------------ //
 
-    $('.btn-collapse').each(function () {
+    $('.btn-collapse').each(function() {
         var button = $(this),
             collapseId = button.attr('data-target');
 
@@ -389,11 +389,11 @@ $(function () {
 
             var collapseElement = $(collapseId);
 
-            $(collapseElement).on('hide.bs.collapse', function () {
+            $(collapseElement).on('hide.bs.collapse', function() {
                 button.text(button.attr('data-collapsed-text'));
             })
 
-            $(collapseElement).on('show.bs.collapse', function () {
+            $(collapseElement).on('show.bs.collapse', function() {
                 button.text(button.attr('data-expanded-text'));
             })
 
@@ -420,4 +420,17 @@ $(function () {
 
     objectFitImages();
 
+});
+
+
+
+
+//JS de menu
+
+//Create function to select elements
+const selectElement = (element) => document.querySelector(element);
+
+//Open and close nav on click
+selectElement('.menu-icons'), addEventListener('click', () => {
+    selectElement('nav').classList.toggle('active');
 });
