@@ -103,7 +103,7 @@
                     <td><strong>{{detalles.estacionamiento}}</strong></td>
                 </tr>
             </table>
-            <br>
+            <hr>
             <p>
                 {{detalles.notas|safe}}
             </p>
@@ -116,10 +116,10 @@
 
             </div>
 
-            <hr>
+            <br>
 
-            <div class="card ">
-                <div class="row " style="max-width: 100%; min-height: 140px;">
+            <div class="card " style="border-radius:20px">
+                <div class="row " style="max-width: 100%; min-height: 140px; padding:10px">
                     <div class="col-md-5">
                         {% if detalles.vendedor.foto%}
                         <div>

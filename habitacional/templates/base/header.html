@@ -48,6 +48,7 @@
         cursor: pointer;
         z-index: 1500;
         display: none;
+        font-size: 35px;
     }
     
     nav {
@@ -272,11 +273,11 @@ NAVBAR Para publico General -->
                 </li>
                 {% if paginas %}
                 <li>
-                    <a href="#">Servicios <i class="icon ion-md-arrow-dropdown"></i> </a>
+                    <a>Servicios <i class="icon ion-md-arrow-dropdown"></i> </a>
                     <ul class="sub-menu">
                         {% for i in paginas %}
                         <li>
-                            <a href="/{{slug}}">{{i.titulo}}</a>
+                            <a href="/{{i.slug}}">{{i.titulo}}</a>
                         </li>
                         {%endfor%}
 
@@ -305,11 +306,11 @@ NAVBAR Para publico General -->
                         <li>
                             <a class="" href="{% url 'ingreso_comercio' %}">+Comercio</a>
                         </li>
-                </li>
-                <li>
-                    <a class="" href="/">+Pagina</a>
-                </li>
-                </ul>
+
+                        <li>
+                            <a class="" href="{% url 'nueva_pagina' %}">+Pagina</a>
+                        </li>
+                    </ul>
                 </li>
                 {% endif %} {% if user.is_authenticated %}
                 <li class="move-right ">
